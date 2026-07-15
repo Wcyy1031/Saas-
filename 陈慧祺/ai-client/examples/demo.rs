@@ -20,7 +20,7 @@ async fn main() -> anyhow::Result<()> {
     if response.content.trim().is_empty() {
         println!("LLM: 模型未返回文本内容");
     } else {
-        println!("LLM: {}", response.content);
+        println!("LLM: {}", response.content.unwrap_or_else(|| "无回复内容".to_string()));
     }
 
     tokio::time::sleep(tokio::time::Duration::from_secs(2)).await;
